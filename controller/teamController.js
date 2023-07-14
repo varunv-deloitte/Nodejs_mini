@@ -38,21 +38,17 @@ function getTopScoreAndWicket(req,res){
 
     // Loop through the teams array
     for (const team of teams) {
-      // Find the player with the highest run for the current team
       const topScorer = team.players.reduce((prev, current) => {
         return prev.score > current.score ? prev : current;
       });
   
-      // Find the player with the highest wicket for the current team
       const topWicketTaker = team.players.reduce((prev, current) => {
         return prev.wickets > current.wickets ? prev : current;
       });
   
-      // Add the top scorer and wicket taker to the topStats object
       topStats[team.name] = { topScorer, topWicketTaker };
     }
-  
-    // Return the topStats object in the response
+
     res.status(200).json({ topStats });
 }
 
